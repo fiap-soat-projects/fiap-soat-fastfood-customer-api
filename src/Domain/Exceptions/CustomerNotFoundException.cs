@@ -2,7 +2,7 @@
 
 namespace Domain.Exceptions;
 
-public class CustomerNotFoundException : Exception
+public class CustomerNotFoundException : DomainException
 {
     private const string CUSTOMER_NOT_FOUND_TEMPLATE_MESSAGE = "Customer '{0}' was not found";
 

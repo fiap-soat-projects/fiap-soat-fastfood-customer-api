@@ -1,6 +1,8 @@
-﻿namespace Domain.Entities.Exceptions;
+﻿using Domain.Exceptions;
 
-internal class CustomerPropertyException : Exception
+namespace Domain.Entities.Exceptions;
+
+internal class CustomerPropertyException : DomainException
 {
     private const string INVALID_CUSTOMER_PROPERTY_TEMPLATE_MESSAGE = "The property {0} is invalid";
 

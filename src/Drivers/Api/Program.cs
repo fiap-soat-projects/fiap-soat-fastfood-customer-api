@@ -1,4 +1,5 @@
 using Adapter;
+using Api.Middlewares;
 using Infrastructure;
 using Scalar.AspNetCore;
 
@@ -10,6 +11,8 @@ builder.Services.AddAdapters();
 builder.Services.AddInfrastructure();
 
 var app = builder.Build();
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.MapOpenApi();
 app.MapScalarApiReference();

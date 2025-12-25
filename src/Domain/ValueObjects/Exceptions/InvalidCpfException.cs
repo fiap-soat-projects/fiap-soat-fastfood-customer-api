@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace Domain.ValueObjects.Exceptions;
 
 [ExcludeFromCodeCoverage]
-internal class InvalidCpfException : DomainException
+public class InvalidCpfException : DomainException
 {
     const string INVALID_CPF_MESSAGE_TEMPLATE = "The CPF {0} is invalid";
 

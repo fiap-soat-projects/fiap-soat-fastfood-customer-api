@@ -3,7 +3,7 @@
 namespace Domain.Exceptions;
 
 [ExcludeFromCodeCoverage]
-internal abstract class DomainException(string message) : Exception(message)
+public abstract class DomainException(string message) : Exception(message)
 {
 
 }

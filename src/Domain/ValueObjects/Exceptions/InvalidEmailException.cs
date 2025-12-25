@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace Domain.ValueObjects.Exceptions;
 
 [ExcludeFromCodeCoverage]
-internal class InvalidEmailException : DomainException
+public class InvalidEmailException : DomainException
 {
     const string INVALID_EMAIL_MESSAGE_TEMPLATE = "The email address {0} is invalid";
 
