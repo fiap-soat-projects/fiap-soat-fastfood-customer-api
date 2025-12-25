@@ -20,6 +20,8 @@ internal class CustomerSql : SqlEntity
 
     internal CustomerSql(Customer customer)
     {
+        Id = customer.Id;
+        CreatedAt = customer.CreatedAt;
         Name = customer.Name;
         Cpf = customer.Cpf;
         Email = customer.Email;
@@ -27,7 +29,7 @@ internal class CustomerSql : SqlEntity
 
     internal Customer ToDomain()
     {
-        return new Customer(Id, CreatedAt)
+        return new Customer(Id, CreatedAt, UpdatedAt)
         {
             Name = Name!,
             Cpf = Cpf!,

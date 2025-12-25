@@ -419,3 +419,7 @@ FodyWeavers.xsd
 
 # Docker Postgres Data
 .docker/postgres/
+
+# EF Hosts
+BuildHost-net472
+BuildHost-netcore

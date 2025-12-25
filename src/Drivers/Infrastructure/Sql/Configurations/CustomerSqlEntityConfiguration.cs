@@ -10,10 +10,12 @@ internal class CustomerSqlEntityConfiguration : IEntityTypeConfiguration<Custome
 {
     public void Configure(EntityTypeBuilder<CustomerSql> builder)
     {
+        builder.ToTable("customers");
+
         builder.HasKey(customer => customer.Id);
 
         builder.Property(customer => customer.Id).HasColumnName("id");
-        builder.Property(customer => customer.CreatedAt).HasDefaultValue("now()").HasColumnName("created_at");
+        builder.Property(customer => customer.CreatedAt).HasDefaultValueSql("now()").HasColumnName("created_at");
         builder.Property(customer => customer.UpdatedAt).IsRequired(false).HasColumnName("updated_at");
         builder.Property(customer => customer.Name).IsRequired(true).HasMaxLength(200).HasColumnName("name");
         builder.Property(customer => customer.Cpf).IsRequired(true).HasMaxLength(30).HasColumnName("cpf");

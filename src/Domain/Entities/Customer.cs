@@ -13,7 +13,7 @@ public class Customer
 
     public int Id
     {
-        get => _id!.Value;
+        get => _id ?? default;
         set
         {
             CustomerPropertyException.ThrowIfNull<int>(value, nameof(Id));
@@ -46,28 +46,37 @@ public class Customer
         }
     }
 
-    public required Email Email
+    public required Email? Email
     {
         get => _email!;
         set
         {
-            CustomerPropertyException.ThrowIfNullOrWhiteSpace(value, nameof(Email));
-
-            _email = value;
+            if (string.IsNullOrWhiteSpace(value) is false)
+            {
+                _email = value;
+            }
         }
     }
 
+    public DateTime? UpdatedAt { get; private set; }
+
     [SetsRequiredMembers]
-    public Customer(string name, Cpf cpf, Email email)
+    public Customer(string name, Cpf cpf, Email? email)
     {
         Name = name;
         Cpf = cpf;
         Email = email;
     }
 
-    public Customer(int id, DateTime createdAt)
+    public Customer(int id, DateTime createdAt, DateTime? updatedAt)
     {
         Id = id;
         CreatedAt = createdAt;
+        UpdatedAt = updatedAt;
+    }
+
+    public void Update()
+    {
+        UpdatedAt = DateTime.UtcNow;
     }
 }

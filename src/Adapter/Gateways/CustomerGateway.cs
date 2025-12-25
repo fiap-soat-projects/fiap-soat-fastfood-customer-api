@@ -40,7 +40,7 @@ internal class CustomerGateway : ICustomerRepository
     {
         var customerSql = await _customers
             .AsNoTracking()
-            .FirstOrDefaultAsync(customer => customer.Id == id, cancellationToken);
+            .SingleOrDefaultAsync(customer => customer.Id == id, cancellationToken);
 
         if (customerSql is null)
         {
@@ -54,7 +54,7 @@ internal class CustomerGateway : ICustomerRepository
     {
         var customerSql = await _customers
            .AsNoTracking()
-           .FirstOrDefaultAsync(customer => customer.Cpf == cpf, cancellationToken);
+           .SingleOrDefaultAsync(customer => customer.Cpf == cpf, cancellationToken);
 
         if (customerSql is null)
         {
@@ -66,7 +66,10 @@ internal class CustomerGateway : ICustomerRepository
 
     public async Task UpdateAsync(Customer customer, CancellationToken cancellationToken)
     {
-        var customerSql = new CustomerSql(customer);
+        var customerSql = new CustomerSql(customer)
+        {
+            UpdatedAt = DateTime.UtcNow
+        };
 
         _customers.Update(customerSql);
         await _context.SaveChangesAsync(cancellationToken);
