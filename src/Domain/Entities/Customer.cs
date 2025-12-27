@@ -68,7 +68,7 @@ public class Customer
         Email = email;
     }
 
-    public Customer(int id, DateTime createdAt, DateTime? updatedAt)
+    public Customer(int id, DateTime createdAt, DateTime? updatedAt = null)
     {
         Id = id;
         CreatedAt = createdAt;

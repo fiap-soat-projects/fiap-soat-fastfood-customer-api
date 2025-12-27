@@ -5,9 +5,11 @@ using Infrastructure.Entities;
 using Infrastructure.Sql.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Npgsql;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Adapter.Gateways;
 
+[ExcludeFromCodeCoverage]
 internal class CustomerGateway : ICustomerRepository
 {
     private readonly CustomerSqlContext _context;
