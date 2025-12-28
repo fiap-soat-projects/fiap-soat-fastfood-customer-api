@@ -1,7 +1,9 @@
 ﻿using Domain.Exceptions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Domain.Entities.Exceptions;
 
+[ExcludeFromCodeCoverage]
 internal class CustomerPropertyException : DomainException
 {
     private const string INVALID_CUSTOMER_PROPERTY_TEMPLATE_MESSAGE = "The property {0} is invalid";
