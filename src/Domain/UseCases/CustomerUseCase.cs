@@ -34,7 +34,7 @@ internal class CustomerUseCase : ICustomerUseCase
 
     public async Task<Customer> GetByCpfAsync(string cpf, CancellationToken cancellationToken)
     {
-        ArgumentException.ThrowIfNullOrEmpty(cpf, nameof(cpf));
+        ArgumentException.ThrowIfNullOrWhiteSpace(cpf, nameof(cpf));
 
         var customer = await _customerRepository.GetByCpfAsync(cpf, cancellationToken);
 
