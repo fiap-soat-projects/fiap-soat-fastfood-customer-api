@@ -38,12 +38,7 @@ public class Customer
     public required Cpf Cpf
     {
         get => _cpf!;
-        set
-        {
-            CustomerPropertyException.ThrowIfNullOrWhiteSpace(value, nameof(Cpf));
-
-            _cpf = value;
-        }
+        set => _cpf = value;
     }
 
     public required Email? Email
@@ -61,11 +56,11 @@ public class Customer
     public DateTime? UpdatedAt { get; private set; }
 
     [SetsRequiredMembers]
-    public Customer(string name, Cpf cpf, Email? email)
+    public Customer(string name, string cpf, string? email)
     {
         Name = name;
         Cpf = cpf;
-        Email = email;
+        Email = email!;
     }
 
     public Customer(int id, DateTime createdAt, DateTime? updatedAt = null)

@@ -1,7 +1,9 @@
 ﻿using Domain.Entities;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Domain.Exceptions;
 
+[ExcludeFromCodeCoverage]
 public class CustomerNotFoundException : DomainException
 {
     private const string CUSTOMER_NOT_FOUND_TEMPLATE_MESSAGE = "Customer '{0}' was not found";

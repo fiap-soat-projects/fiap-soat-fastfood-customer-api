@@ -15,7 +15,7 @@ public readonly partial struct Email
 
     public Email(string address)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace("Email address cannot be null or white space");
+        ArgumentException.ThrowIfNullOrWhiteSpace(address, "Email cannot be null or white space");
 
         if (EmailRegex().IsMatch(address) is false)
         {

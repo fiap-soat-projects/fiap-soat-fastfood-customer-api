@@ -21,7 +21,7 @@ internal class CustomerPropertyException : DomainException
 
     public static void ThrowIfNull<T>(T? value, string propertyName) where T : struct
     {
-        if (!value.HasValue)
+        if (!value.HasValue || EqualityComparer<T>.Default.Equals(value.Value, default))
         {
             throw new CustomerPropertyException(propertyName);
         }

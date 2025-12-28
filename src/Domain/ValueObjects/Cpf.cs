@@ -1,4 +1,5 @@
-﻿using Domain.ValueObjects.Exceptions;
+﻿using Domain.Entities.Exceptions;
+using Domain.ValueObjects.Exceptions;
 using System.Text.RegularExpressions;
 
 namespace Domain.ValueObjects;
@@ -20,7 +21,7 @@ public readonly partial struct Cpf
 
     public Cpf(string number)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace("Cpf cannot be null or white space");
+        ArgumentException.ThrowIfNullOrWhiteSpace(number, "Cpf cannot be null or white space");
 
         number = CpfReplaceRegex().Replace(number, string.Empty);
 
