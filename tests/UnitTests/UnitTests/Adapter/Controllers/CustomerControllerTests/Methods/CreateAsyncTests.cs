@@ -22,12 +22,7 @@ public class CreateAsyncTests
             Email = "test@test.com"
         };
 
-        var customer = new Customer(1, DateTime.UtcNow)
-        {
-            Name = request.Name,
-            Cpf = request.Cpf,
-            Email = request.Email
-        };
+        var customer = new Customer(1, DateTime.UtcNow, request.Name, request.Cpf, request.Email);
 
         useCase.CreateAsync(Arg.Any<Customer>(), Arg.Any<CancellationToken>()).Returns(customer);
 
@@ -39,7 +34,7 @@ public class CreateAsyncTests
         Assert.Equal(customer.CreatedAt, result.ViewModel.CreatedAt);
         Assert.Equal(customer.Name, result.ViewModel.Name);
         Assert.Equal(customer.Cpf, result.ViewModel.Cpf);
-        Assert.Equal(customer.Email, result.ViewModel.Email);
+        Assert.Equal(customer.Email.ToString(), result.ViewModel.Email);
         Assert.Null(result.ViewModel.UpdatedAt);
     }
 }

@@ -30,8 +30,7 @@ public class ErrorHandlingMiddleware
             await _next(context);
         }
         catch (Exception ex) when (ex
-            is CustomerNotFoundException
-            or DuplicatedCustomerException
+            is DuplicatedCustomerException
             or InvalidCpfException
             or InvalidEmailException)
         {
@@ -39,18 +38,27 @@ public class ErrorHandlingMiddleware
 
             await HandleResponseAsync(context, ex, HttpStatusCode.BadRequest);
         }
+        catch (CustomerNotFoundException ex)
+        {
+            _logger.LogWarning(ex, "{Message}", ex.Message);
+
+            await HandleResponseAsync(context, ex, HttpStatusCode.NotFound);
+        }
         catch (Exception ex)
         {
+            const string DEFAULT_ERROR_MESSAGE = "An internal error occurs while trying to process the request";
+
             _logger.LogError(ex, "{Message}", ex.Message);
 
-            await HandleResponseAsync(context, ex, HttpStatusCode.InternalServerError);
+            await HandleResponseAsync(context, ex, HttpStatusCode.InternalServerError, DEFAULT_ERROR_MESSAGE);
         }
     }
 
     private static async Task HandleResponseAsync(
         HttpContext context,
         Exception ex,
-        HttpStatusCode statusCode)
+        HttpStatusCode statusCode,
+        string? replacementMessage = null)
     {
         context.Response.ContentType = "application/json";
         context.Response.StatusCode = (int)statusCode;
@@ -58,7 +66,7 @@ public class ErrorHandlingMiddleware
         var response = new
         {
             status = context.Response.StatusCode,
-            error = ex.Message
+            error = string.IsNullOrWhiteSpace(replacementMessage) ? ex.Message : replacementMessage
 #if DEBUG
             ,
             details = ex.StackTrace

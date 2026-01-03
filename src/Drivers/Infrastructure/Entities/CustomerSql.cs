@@ -9,8 +9,8 @@ namespace Infrastructure.Entities;
 [EntityTypeConfiguration(typeof(CustomerSqlEntityConfiguration))]
 internal class CustomerSql : SqlEntity
 {
-    public string? Name { get; set; }
-    public string? Cpf { get; set; }
+    public required string Name { get; set; }
+    public required string Cpf { get; set; }
     public string? Email { get; set; }
 
     public CustomerSql()
@@ -18,22 +18,18 @@ internal class CustomerSql : SqlEntity
 
     }
 
+    [SetsRequiredMembers]
     internal CustomerSql(Customer customer)
     {
         Id = customer.Id;
         CreatedAt = customer.CreatedAt;
         Name = customer.Name;
         Cpf = customer.Cpf;
-        Email = customer.Email;
+        Email = customer.Email?.ToString();
     }
 
     internal Customer ToDomain()
     {
-        return new Customer(Id, CreatedAt, UpdatedAt)
-        {
-            Name = Name!,
-            Cpf = Cpf!,
-            Email = Email!
-        };
+        return new Customer(Id, CreatedAt, Name, Cpf, Email, UpdatedAt);
     }
 }

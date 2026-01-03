@@ -39,14 +39,13 @@ public class PropertyTests
     public void When_SetEmailToNullOrWhiteSpace_Then_DoNotSet()
     {
         // Arrange
-        var customer = new Customer("AnyName", "12345678901", "test@test.com")
-        {
-            // Act
-            Email = null!
-        };
+        var customer = new Customer("AnyName", "12345678901", "test@test.com");
+
+        // Act
+        customer.Update(email: null);
 
         // Assert
-        Assert.Equal("test@test.com", customer.Email);
+        Assert.Equal("test@test.com", customer.Email.ToString());
     }
 
     [Fact]

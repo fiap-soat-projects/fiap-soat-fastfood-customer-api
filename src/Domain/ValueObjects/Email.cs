@@ -7,8 +7,7 @@ public readonly partial struct Email
 {
     public string Adress { get; }
 
-    public static implicit operator Email(string value) => new(value);
-    public static implicit operator string(Email email) => email.Adress;
+    //public static implicit operator string(Email email) => email.Adress;
 
     [GeneratedRegex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$")]
     private static partial Regex EmailRegex();

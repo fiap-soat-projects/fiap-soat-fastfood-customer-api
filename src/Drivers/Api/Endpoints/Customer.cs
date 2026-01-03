@@ -42,7 +42,7 @@ public class Customer : ControllerBase
         return Ok(presenter.ViewModel);
     }
 
-    [HttpPut("{id}")]
+    [HttpPatch("{id}")]
     public async Task<IActionResult> UpdateAsync(int id, [FromBody] UpdateCustomerRequest updateCustomerRequest, CancellationToken cancellationToken)
     {
         if (updateCustomerRequest.Id is null)

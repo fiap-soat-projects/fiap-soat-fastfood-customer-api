@@ -28,12 +28,7 @@ public class UpdateAsyncTests
         var repository = Substitute.For<ICustomerRepository>();
         var sut = new CustomerUseCase(repository);
 
-        var customer = new Customer(1, DateTime.Now)
-        {
-            Name = "AnyName2",
-            Cpf = "22222222222",
-            Email = "test@test2.com"
-        };
+        var customer = new Customer(1, DateTime.Now, "AnyName2", "22222222222", "test@test2.com");
 
         // Act
         await sut.UpdateAsync(customer, CancellationToken.None);

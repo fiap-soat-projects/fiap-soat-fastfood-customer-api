@@ -22,16 +22,10 @@ public class UpdateAsyncTests
         {
             Id = id,
             Name = "AnyName2",
-            Cpf = "22222222222",
             Email = "test2@test.com"
         };
 
-        var currentCustomer = new Customer(id, DateTime.UtcNow)
-        {
-            Name = "AnyName",
-            Cpf = "11111111111",
-            Email = "test@test.com"
-        };
+        var currentCustomer = new Customer(id, DateTime.UtcNow, "AnyName", "11111111111", "test@test.com");
 
         useCase.GetByIdAsync(id, CancellationToken.None).Returns(currentCustomer);
 
@@ -42,15 +36,14 @@ public class UpdateAsyncTests
         Assert.Equal(request.Id, result.ViewModel.Id);
         Assert.Equal(currentCustomer.CreatedAt, result.ViewModel.CreatedAt);
         Assert.Equal(request.Name, result.ViewModel.Name);
-        Assert.Equal(request.Cpf, result.ViewModel.Cpf);
+        Assert.Equal(currentCustomer.Cpf, result.ViewModel.Cpf);
         Assert.Equal(request.Email, result.ViewModel.Email);
         Assert.NotNull(result.ViewModel.UpdatedAt);
 
         await useCase.Received(1).UpdateAsync(Arg.Is<Customer>(customer =>
             customer.Id == request.Id
             && customer.Name == request.Name
-            && customer.Cpf == request.Cpf
-            && customer.Email == request.Email
+            && customer.Email.ToString() == request.Email
         ), Arg.Any<CancellationToken>());
     }
 }

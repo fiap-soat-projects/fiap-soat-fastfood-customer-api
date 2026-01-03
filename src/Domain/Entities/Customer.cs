@@ -8,8 +8,8 @@ public class Customer
 {
     private int? _id;
     private string? _name;
-    private string? _cpf;
-    private string? _email;
+    private Cpf _cpf;
+    private Email? _email;
 
     public int Id
     {
@@ -37,20 +37,14 @@ public class Customer
 
     public required Cpf Cpf
     {
-        get => _cpf!;
+        get => _cpf;
         set => _cpf = value;
     }
 
-    public required Email? Email
+    public Email? Email
     {
         get => _email!;
-        set
-        {
-            if (string.IsNullOrWhiteSpace(value) is false)
-            {
-                _email = value;
-            }
-        }
+        private set => _email = value;
     }
 
     public DateTime? UpdatedAt { get; private set; }
@@ -58,20 +52,38 @@ public class Customer
     [SetsRequiredMembers]
     public Customer(string name, string cpf, string? email)
     {
+        CreatedAt = DateTime.UtcNow;
         Name = name;
         Cpf = cpf;
-        Email = email!;
+        SetEmail(email);
     }
 
-    public Customer(int id, DateTime createdAt, DateTime? updatedAt = null)
+    [SetsRequiredMembers]
+    public Customer(int id, DateTime createdAt, string name, string cpf, string? email = null, DateTime? updatedAt = null)
+        : this(name, cpf, email)
     {
         Id = id;
         CreatedAt = createdAt;
         UpdatedAt = updatedAt;
     }
 
-    public void Update()
+    public void Update(string? name = null, string? email = null)
     {
         UpdatedAt = DateTime.UtcNow;
+
+        if (string.IsNullOrWhiteSpace(name) is false)
+        {
+            Name = name;
+        }
+
+        SetEmail(email);
+    }
+
+    private void SetEmail(string? email)
+    {
+        if (string.IsNullOrWhiteSpace(email) is false)
+        {
+            _email = new Email(email);
+        }
     }
 }

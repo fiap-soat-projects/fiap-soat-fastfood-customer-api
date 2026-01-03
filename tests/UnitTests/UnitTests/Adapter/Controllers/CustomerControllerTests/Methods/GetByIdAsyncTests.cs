@@ -16,12 +16,7 @@ public class GetByIdAsyncTests
 
         var id = 1;
 
-        var customer = new Customer(id, DateTime.UtcNow)
-        {
-            Name = "AnyName",
-            Cpf = "11111111111",
-            Email = "test@test.com"
-        };
+        var customer = new Customer(id, DateTime.UtcNow, "AnyName", "11111111111", "test@test.com");
 
         useCase.GetByIdAsync(id, CancellationToken.None).Returns(customer);
 
@@ -33,7 +28,7 @@ public class GetByIdAsyncTests
         Assert.Equal(customer.CreatedAt, result.ViewModel.CreatedAt);
         Assert.Equal(customer.Name, result.ViewModel.Name);
         Assert.Equal(customer.Cpf, result.ViewModel.Cpf);
-        Assert.Equal(customer.Email, result.ViewModel.Email);
+        Assert.Equal(customer.Email.ToString(), result.ViewModel.Email);
         Assert.Null(result.ViewModel.UpdatedAt);
     }
 }

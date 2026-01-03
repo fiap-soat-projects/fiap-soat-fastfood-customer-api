@@ -42,10 +42,7 @@ internal class CustomerController : ICustomerController
     {
         var customer = await _customerUseCase.GetByIdAsync(request.Id!.Value, cancellationToken);
 
-        customer.Name = request.Name;
-        customer.Cpf = request.Cpf;
-        customer.Email = request.Email!;
-        customer.Update();
+        customer.Update(request.Name, request.Email);
 
         await _customerUseCase.UpdateAsync(customer, cancellationToken);
 

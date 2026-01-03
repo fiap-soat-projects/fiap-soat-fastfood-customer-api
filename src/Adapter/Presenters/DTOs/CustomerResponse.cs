@@ -20,6 +20,6 @@ public record class CustomerResponse
         UpdatedAt = customer.UpdatedAt;
         Name = customer.Name;
         Cpf = customer.Cpf;
-        Email = customer.Email;
+        Email = customer.Email?.ToString();
     }
 }

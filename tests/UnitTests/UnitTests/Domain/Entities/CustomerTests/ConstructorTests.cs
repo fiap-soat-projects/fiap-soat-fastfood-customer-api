@@ -35,7 +35,7 @@ public class ConstructorTests
         // Assert
         Assert.Equal(name, customer.Name);
         Assert.Equal(cpf, customer.Cpf);
-        Assert.Equal(email, customer.Email);
+        Assert.Equal(email, customer.Email.ToString());
     }
 
     [Fact]
@@ -46,12 +46,7 @@ public class ConstructorTests
         var createdAt = DateTime.UtcNow;
 
         // Act
-        var customer = new Customer(id, createdAt)
-        {
-            Name = "AnyName",
-            Cpf = "12345678901",
-            Email = "test@test.com"
-        };
+        var customer = new Customer(id, createdAt, "AnyName", "12345678901", "test@test.com");
 
         // Assert
         Assert.Equal(id, customer.Id);
@@ -59,6 +54,6 @@ public class ConstructorTests
         Assert.Null(customer.UpdatedAt);
         Assert.Equal("AnyName", customer.Name);
         Assert.Equal("12345678901", customer.Cpf);
-        Assert.Equal("test@test.com", customer.Email);
+        Assert.Equal("test@test.com", customer.Email.ToString());
     }
 }

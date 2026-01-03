@@ -16,12 +16,7 @@ public class GetByCpfAsyncTests
 
         var cpf = "11111111111";
 
-        var customer = new Customer(1, DateTime.UtcNow)
-        {
-            Name = "AnyName",
-            Cpf = cpf,
-            Email = "test@test.com"
-        };
+        var customer = new Customer(1, DateTime.UtcNow, "AnyName", cpf, "test@test.com");
 
         useCase.GetByCpfAsync(cpf, CancellationToken.None).Returns(customer);
 
@@ -33,7 +28,7 @@ public class GetByCpfAsyncTests
         Assert.Equal(customer.CreatedAt, result.ViewModel.CreatedAt);
         Assert.Equal(customer.Name, result.ViewModel.Name);
         Assert.Equal(customer.Cpf, result.ViewModel.Cpf);
-        Assert.Equal(customer.Email, result.ViewModel.Email);
+        Assert.Equal(customer.Email?.ToString(), result.ViewModel.Email);
         Assert.Null(result.ViewModel.UpdatedAt);
     }
 }

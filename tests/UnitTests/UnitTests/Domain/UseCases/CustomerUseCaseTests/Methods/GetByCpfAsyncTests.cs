@@ -61,12 +61,7 @@ public class GetByCpfAsyncTests
         var repository = Substitute.For<ICustomerRepository>();
         var sut = new CustomerUseCase(repository);
 
-        var customer = new Customer(1, DateTime.UtcNow)
-        {
-            Name = "AnyName",
-            Cpf = "11111111111",
-            Email = "test@test.com"
-        };
+        var customer = new Customer(1, DateTime.UtcNow, "AnyName", "11111111111", "test@test.com");
 
         repository.GetByCpfAsync(customer.Cpf, CancellationToken.None).Returns(customer);
 

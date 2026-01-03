@@ -32,13 +32,9 @@ public class CreateAsyncTests
 
         var customer = new Customer("AnyName", "11111111111", "test@test.com");
 
-        repository.CreateAsync(customer, CancellationToken.None).Returns(
-            new Customer(1, DateTime.Now)
-            {
-                Name = customer.Name,
-                Cpf = customer.Cpf,
-                Email = customer.Email
-            });
+        repository
+            .CreateAsync(customer, CancellationToken.None)
+            .Returns(new Customer(1, DateTime.Now, customer.Name, customer.Cpf, customer.Email.ToString()));
 
         // Act
         var result = await sut.CreateAsync(customer, CancellationToken.None);
