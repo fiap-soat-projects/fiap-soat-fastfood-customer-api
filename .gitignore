@@ -9,7 +9,6 @@
 *.user
 *.userosscache
 *.sln.docstates
-*.env
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -416,3 +415,10 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+
+# Docker Postgres Data
+.docker/postgres/
+
+# EF Hosts
+BuildHost-net472
+BuildHost-netcore
