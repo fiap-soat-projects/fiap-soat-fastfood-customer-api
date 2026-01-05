@@ -6,11 +6,11 @@ on:
   pull_request:
     branches: ["main"]
 
-variables:
-  appName: 'fastfood.customer.api'
-  sonar_repo_name: 'fiap-soat-fastfood-customer-api'
-  image_name: 'fiap-soat-fastfood-customer-api'
-  dotnet_version: '10.0.x'
+env:
+  APP_NAME: 'fastfood.customer.api'
+  SONAR_REPO_NAME: 'fiap-soat-fastfood-customer-api'
+  IMAGE_NAME: 'fiap-soat-fastfood-customer-api'
+  DOTNET_VERSION: '10.0.x'
 
 jobs:
   dotnet_build:
@@ -23,7 +23,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: ${{ vars.dotnet_version }} 
+          dotnet-version: ${{ env.DOTNET_VERSION }} 
 
       - name: Restore dependencies
         run: dotnet restore
@@ -47,7 +47,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: ${{ vars.dotnet_version }} 
+          dotnet-version: ${{ env.DOTNET_VERSION }}
   
       - name: Install jq
         run: sudo apt-get install -y jq
@@ -61,7 +61,7 @@ jobs:
       - name: SonarCloud - Begin
         run: |
           dotnet-sonarscanner begin \
-            /k:"fiap-soat-projects_${{ vars.sonar_repo_name }}" \
+            /k:"fiap-soat-projects_${{ env.SONAR_REPO_NAME }}" \
             /o:"fiap-soat-projects" \
             /d:sonar.token="${{ secrets.SONAR_TOKEN }}" \
             /d:sonar.host.url="https://sonarcloud.io" \
@@ -158,7 +158,7 @@ jobs:
           context: .
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_TENANT }}/${{vars.image_name}}:${{ steps.vars.outputs.version }}
+            ${{ secrets.DOCKERHUB_TENANT }}/${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.version }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -197,7 +197,7 @@ jobs:
 
       - name: Create secrets manifest
         run: |
-          cat > ./k8s/${{ vars.appName }}-secret.yaml <<'EOF'
+          cat > ./k8s/${{ env.APP_NAME }}-secret.yaml <<'EOF'
           ${{ secrets.API_SECRETS_MANIFEST }}
           EOF
 
@@ -220,7 +220,7 @@ jobs:
       - name: Update image tag using yq
         if: github.event_name == 'pull_request'
         run: |
-          yq e ".spec.template.spec.containers[0].image = \"${{ secrets.DOCKERHUB_TENANT }}/${{ vars.image_name }}:${{ env.VERSION }}\"" -i k8s/${{ vars.appName }}-deployment.yaml
+          yq e ".spec.template.spec.containers[0].image = \"${{ secrets.DOCKERHUB_TENANT }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}\"" -i k8s/${{ env.APP_NAME }}-deployment.yaml
 
       - name: Deploy
         run: |
