@@ -7,7 +7,7 @@ on:
     branches: ["main"]
 
 env:
-  APP_NAME: 'fastfood.customer.api'
+  APP_NAME: 'fastfood-customer-api'
   SONAR_REPO_NAME: 'fiap-soat-fastfood-customer-api'
   IMAGE_NAME: 'fiap-soat-fastfood-customer-api'
   DOTNET_VERSION: '10.0.x'
