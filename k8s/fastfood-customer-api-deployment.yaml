@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fastfood-customer-api
+  namespace: fiap
+  labels:
+    app: fastfood-customer-api
+spec:
+  selector:
+    matchLabels:
+      app: fastfood-customer-api
+  template:
+    metadata:
+      labels:
+        app: fastfood-customer-api
+    spec:
+      containers:
+        - name: fastfood-customer-api
+          image: ajjposproj/fiap-soat-fastfood-customer-api:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          envFrom:
+            - configMapRef:
+                name: fastfood-customer-api
+            - secretRef:
+                name: fastfood-customer-api
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "200m"
+              memory: "512Mi"

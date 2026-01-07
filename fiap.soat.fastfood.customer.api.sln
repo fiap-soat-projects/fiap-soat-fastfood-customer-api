@@ -26,10 +26,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.env = .env
 		.gitignore = .gitignore
 		docker-compose.yml = docker-compose.yml
+		.github\workflows\github-actions.yml = .github\workflows\github-actions.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "tests\UnitTests\UnitTests\UnitTests.csproj", "{4E171660-E07A-49DA-BA53-CA6373B5D56C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{D7EE8F67-76A7-42B4-9CE5-167583503AAA}"
+	ProjectSection(SolutionItems) = preProject
+		k8s\fastfood-customer-api-configmap.yaml = k8s\fastfood-customer-api-configmap.yaml
+		k8s\fastfood-customer-api-deployment.yaml = k8s\fastfood-customer-api-deployment.yaml
+		k8s\fastfood-customer-api-hpa.yaml = k8s\fastfood-customer-api-hpa.yaml
+		k8s\fastfood-customer-api-service.yaml = k8s\fastfood-customer-api-service.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +78,7 @@ Global
 		{5A0E9856-16CA-4141-8A09-D55680B5FDA3} = {B68BB0DD-697B-4D8E-B784-3423EB357A63}
 		{8BB6B575-7835-4E69-9AA2-5D94F8152268} = {B68BB0DD-697B-4D8E-B784-3423EB357A63}
 		{4E171660-E07A-49DA-BA53-CA6373B5D56C} = {E5004F69-1D45-4FCA-9FDB-4819E2A6D6B1}
+		{D7EE8F67-76A7-42B4-9CE5-167583503AAA} = {B9F1C98C-3CA1-4809-95F9-1E38CC94A2A3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {344CCCBA-74FA-4668-83D6-4138F52E5F5B}
