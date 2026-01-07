@@ -226,4 +226,4 @@ jobs:
       - name: Deploy
         run: |
           kubectl apply -f k8s/.
-          kubectl rollout status deployment/fastfood-api -n fiap --timeout=60s
+          kubectl rollout status deployment/${{ env.APP_NAME }} -n fiap --timeout=60s
