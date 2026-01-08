@@ -41,9 +41,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{D7EE8F67-76A
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "migrations", "migrations", "{E33F5342-D725-4ACA-80F2-A0AF6DE96D11}"
-	ProjectSection(SolutionItems) = preProject
-		migrations\customer.sql = migrations\customer.sql
-	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BddTests", "BddTests", "{E8138A7E-9F57-48CD-A3C5-CBE096099E26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BddTests", "tests\BddTests\BddTests.csproj", "{A8B21604-09EA-4BE8-BEF8-A6BBC76E8322}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +72,10 @@ Global
 		{4E171660-E07A-49DA-BA53-CA6373B5D56C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E171660-E07A-49DA-BA53-CA6373B5D56C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E171660-E07A-49DA-BA53-CA6373B5D56C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8B21604-09EA-4BE8-BEF8-A6BBC76E8322}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8B21604-09EA-4BE8-BEF8-A6BBC76E8322}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8B21604-09EA-4BE8-BEF8-A6BBC76E8322}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8B21604-09EA-4BE8-BEF8-A6BBC76E8322}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -85,6 +90,8 @@ Global
 		{4E171660-E07A-49DA-BA53-CA6373B5D56C} = {E5004F69-1D45-4FCA-9FDB-4819E2A6D6B1}
 		{D7EE8F67-76A7-42B4-9CE5-167583503AAA} = {B9F1C98C-3CA1-4809-95F9-1E38CC94A2A3}
 		{E33F5342-D725-4ACA-80F2-A0AF6DE96D11} = {B9F1C98C-3CA1-4809-95F9-1E38CC94A2A3}
+		{E8138A7E-9F57-48CD-A3C5-CBE096099E26} = {DDA3244E-677A-41FB-AB94-D101B4559DFA}
+		{A8B21604-09EA-4BE8-BEF8-A6BBC76E8322} = {E8138A7E-9F57-48CD-A3C5-CBE096099E26}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {344CCCBA-74FA-4668-83D6-4138F52E5F5B}
