@@ -33,7 +33,7 @@ public class UpdateAsyncTests
         var result = await sut.UpdateAsync(request, CancellationToken.None);
 
         // Assert
-        Assert.Equal(request.Id, result.ViewModel.Id);
+        Assert.Equal(request.Id.ToString(), result.ViewModel.Id);
         Assert.Equal(currentCustomer.CreatedAt, result.ViewModel.CreatedAt);
         Assert.Equal(request.Name, result.ViewModel.Name);
         Assert.Equal(currentCustomer.Cpf, result.ViewModel.Cpf);

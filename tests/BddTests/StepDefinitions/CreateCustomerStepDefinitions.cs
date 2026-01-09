@@ -46,7 +46,7 @@ public sealed class CreateCustomerStepDefinitions
     }
 
     [Then("the response should contain the created customer with id {int} and the same name, cpf and email and updatedAt null")]
-    public void ThenTheResponseShouldContainTheCreatedCustomer(int expectedId)
+    public void ThenTheResponseShouldContainTheCreatedCustomer(string expectedId)
     {
         Assert.NotNull(_presenter);
         Assert.Equal(expectedId, _presenter.ViewModel.Id);
