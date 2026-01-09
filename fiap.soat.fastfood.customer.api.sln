@@ -41,10 +41,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{D7EE8F67-76A
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "migrations", "migrations", "{E33F5342-D725-4ACA-80F2-A0AF6DE96D11}"
+	ProjectSection(SolutionItems) = preProject
+		migrations\customer.sql = migrations\customer.sql
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BddTests", "BddTests", "{E8138A7E-9F57-48CD-A3C5-CBE096099E26}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BddTests", "tests\BddTests\BddTests.csproj", "{A8B21604-09EA-4BE8-BEF8-A6BBC76E8322}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{873F574E-7C09-44B5-99C9-1D2E7FAB7985}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{1E339472-3CD3-42AD-8D49-B47F370D132D}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\github-actions.yml = .github\workflows\github-actions.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -92,6 +102,7 @@ Global
 		{E33F5342-D725-4ACA-80F2-A0AF6DE96D11} = {B9F1C98C-3CA1-4809-95F9-1E38CC94A2A3}
 		{E8138A7E-9F57-48CD-A3C5-CBE096099E26} = {DDA3244E-677A-41FB-AB94-D101B4559DFA}
 		{A8B21604-09EA-4BE8-BEF8-A6BBC76E8322} = {E8138A7E-9F57-48CD-A3C5-CBE096099E26}
+		{1E339472-3CD3-42AD-8D49-B47F370D132D} = {873F574E-7C09-44B5-99C9-1D2E7FAB7985}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {344CCCBA-74FA-4668-83D6-4138F52E5F5B}

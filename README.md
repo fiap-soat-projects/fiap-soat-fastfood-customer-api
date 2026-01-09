@@ -35,6 +35,13 @@ A API presente neste repositório disponibiliza rotas para gerenciamento de clie
 - Todos os endpoints aceitam e retornam JSON.
 - Utilize o Scalar para explorar e testar os endpoints.
 
+
+## Análise de código e testes
+
+![Sonar](./assets/sonar.png)
+
+![Testes de unidade e comportamento](./assets/tests.png)
+
 ## 🏦 Banco de Dados
 
 Neste projeto utilizamos o [`Postgres`](https://www.postgresql.org/) e o modelo de cliente (customer) segue a estrutura abaixo:
