@@ -6,7 +6,7 @@ namespace Adapter.Presenters.DTOs;
 [ExcludeFromCodeCoverage]
 public record class CustomerResponse
 {
-    public int Id { get; private init; }
+    public string Id { get; private init; }
     public DateTime CreatedAt { get; private init; }
     public DateTime? UpdatedAt { get; private init; }
     public string Name { get; private init; }
@@ -15,7 +15,7 @@ public record class CustomerResponse
 
     public CustomerResponse(Customer customer)
     {
-        Id = customer.Id;
+        Id = customer.Id.ToString();
         CreatedAt = customer.CreatedAt;
         UpdatedAt = customer.UpdatedAt;
         Name = customer.Name;
